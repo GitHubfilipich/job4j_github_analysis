@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.github.analysis.dto.RepositoryCommits;
 import ru.job4j.github.analysis.model.Repository;
+import ru.job4j.github.analysis.service.CommitService;
 import ru.job4j.github.analysis.service.RepositoryService;
 
 import java.util.List;
@@ -16,14 +17,17 @@ public class GitHubController {
     @Autowired
     private RepositoryService repositoryService;
 
+    @Autowired
+    private CommitService commitService;
+
     @GetMapping("/repositories")
     public List<Repository> getAllRepositories() {
-        return List.of();
+        return repositoryService.findAll();
     }
 
     @GetMapping("/commits/{name}")
     public List<RepositoryCommits> getCommits(@PathVariable(value = "name") String name) {
-        return List.of();
+        return commitService.findCommitsByRepositoryName(name);
     }
 
     @PostMapping("/repository")
