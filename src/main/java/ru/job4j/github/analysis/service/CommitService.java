@@ -1,5 +1,6 @@
 package ru.job4j.github.analysis.service;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.job4j.github.analysis.dto.RepositoryCommits;
@@ -9,6 +10,7 @@ import ru.job4j.github.analysis.repository.CommitRepository;
 import java.util.List;
 import java.util.Optional;
 
+@AllArgsConstructor
 @Service
 public class CommitService {
     @Autowired

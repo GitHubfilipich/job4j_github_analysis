@@ -1,5 +1,7 @@
 package ru.job4j.github.analysis.service;
 
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.ParameterizedTypeReference;
@@ -13,6 +15,8 @@ import ru.job4j.github.analysis.model.Repository;
 import java.time.LocalDateTime;
 import java.util.List;
 
+@RequiredArgsConstructor
+@AllArgsConstructor
 @Service
 public class GitHubService {
 
