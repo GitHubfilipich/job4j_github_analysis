@@ -21,7 +21,7 @@ public class CommitService {
     }
 
     public List<RepositoryCommits> findCommitsByRepositoryName(String name) {
-        return commitRepository.findByRepository_Name(name).stream()
+        return commitRepository.findByRepositoryName(name).stream()
                 .map(this::getDTOFromCommit)
                 .toList();
     }
@@ -39,6 +39,6 @@ public class CommitService {
     }
 
     public Optional<Commit> findLastCommitByRepositoryName(String name) {
-        return commitRepository.findFirstByRepository_NameOrderByDateDesc(name);
+        return commitRepository.findFirstByRepositoryNameOrderByDateDesc(name);
     }
 }

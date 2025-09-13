@@ -61,7 +61,7 @@ class GitHubServiceTest {
         assertThat(httpMethodCaptorResult).isEqualTo(HttpMethod.GET);
         assertThat(httpEntityArgumentCaptorResult).isNull();
         assertThat(parameterizedTypeReferenceCaptorResult).isEqualTo(
-                new ParameterizedTypeReference<List<Repository>>() {});
+                new ParameterizedTypeReference<List<Repository>>() { });
     }
 
     @Test
@@ -99,7 +99,7 @@ class GitHubServiceTest {
         assertThat(httpMethodCaptorResult).isEqualTo(HttpMethod.GET);
         assertThat(httpEntityArgumentCaptorResult).isNull();
         assertThat(parameterizedTypeReferenceCaptorResult).isEqualTo(
-                new ParameterizedTypeReference<List<RepositoryCommits>>() {});
+                new ParameterizedTypeReference<List<RepositoryCommits>>() { });
     }
 
     @Test
@@ -136,6 +136,6 @@ class GitHubServiceTest {
         assertThat(httpMethodCaptorResult).isEqualTo(HttpMethod.GET);
         assertThat(httpEntityArgumentCaptorResult).isNull();
         assertThat(parameterizedTypeReferenceCaptorResult).isEqualTo(
-                new ParameterizedTypeReference<List<RepositoryCommits>>() {});
+                new ParameterizedTypeReference<List<RepositoryCommits>>() { });
     }
 }

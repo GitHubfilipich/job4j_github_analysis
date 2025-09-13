@@ -30,7 +30,7 @@ public class GitHubService {
         String url = String.format("https://api.github.com/users/%s/repos", username);
         ResponseEntity<List<Repository>> response = restTemplate.exchange(
                 url, HttpMethod.GET, null,
-                new ParameterizedTypeReference<List<Repository>>() {});
+                new ParameterizedTypeReference<List<Repository>>() { });
         return response.getBody();
     }
 
@@ -38,7 +38,7 @@ public class GitHubService {
         String url = String.format("https://api.github.com/repos/%s/%s/commits", username, repoName);
         ResponseEntity<List<RepositoryCommits>> response = restTemplate.exchange(
                 url, HttpMethod.GET, null,
-                new ParameterizedTypeReference<List<RepositoryCommits>>() {});
+                new ParameterizedTypeReference<List<RepositoryCommits>>() { });
         return response.getBody();
     }
 
@@ -46,7 +46,7 @@ public class GitHubService {
         String url = String.format("https://api.github.com/repos/%s/%s/commits?since=%s", username, repoName, since);
         ResponseEntity<List<RepositoryCommits>> response = restTemplate.exchange(
                 url, HttpMethod.GET, null,
-                new ParameterizedTypeReference<List<RepositoryCommits>>() {});
+                new ParameterizedTypeReference<List<RepositoryCommits>>() { });
         return response.getBody();
     }
 }

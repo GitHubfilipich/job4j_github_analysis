@@ -63,7 +63,6 @@ class ScheduledTasksTest {
                 .map(rc -> getCommitFromDTO(repo, rc))
                 .toList();
 
-
         Mockito.when(repositoryService.findAll()).thenReturn(repoList);
         Mockito.when(commitService.findLastCommitByRepositoryName(repo.getName())).thenReturn(Optional.empty());
         Mockito.when(gitHubService.fetchCommits(repo.getName())).thenReturn(repositoryCommits);
@@ -87,13 +86,14 @@ class ScheduledTasksTest {
                 new RepositoryCommits.CommitDetail(
                         new RepositoryCommits.CommitAuthor("author3", "2024-01-03T00:00:00Z"), "msg3"));
         List<RepositoryCommits> repositoryCommits = List.of(rc1);
-        var commit = getCommitFromDTO(repo,rc1);
+        var commit = getCommitFromDTO(repo, rc1);
         var dateCaptor = ArgumentCaptor.forClass(LocalDateTime.class);
         var stringCaptor = ArgumentCaptor.forClass(String.class);
 
         Mockito.when(repositoryService.findAll()).thenReturn(repoList);
         Mockito.when(commitService.findLastCommitByRepositoryName(repo.getName())).thenReturn(Optional.of(lastCommit));
-        Mockito.when(gitHubService.fetchCommits(stringCaptor.capture(), dateCaptor.capture())).thenReturn(repositoryCommits);
+        Mockito.when(gitHubService.fetchCommits(stringCaptor.capture(), dateCaptor.capture()))
+                .thenReturn(repositoryCommits);
 
         scheduledTasks.fetchCommits();
         var dateCaptorValue = dateCaptor.getValue();

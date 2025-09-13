@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CommitRepository extends JpaRepository<Commit, Long> {
-    List<Commit> findByRepository_Name(String name);
+    List<Commit> findByRepositoryName(String name);
 
-    Optional<Commit> findFirstByRepository_NameOrderByDateDesc(String repositoryName);
+    Optional<Commit> findFirstByRepositoryNameOrderByDateDesc(String repositoryName);
 }

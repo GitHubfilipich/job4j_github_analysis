@@ -41,11 +41,11 @@ class CommitServiceTest {
     @Test
     void whenFindCommitsByRepositoryNameThenReturnDTOList() {
         Repository repo = new Repository(1L, "repo", "url");
-        List<Commit> commits = List.of(new Commit(1L, "msg1", "author1", LocalDateTime.of(2024,1,1,12,0), repo),
-                new Commit(2L, "msg2", "author2", LocalDateTime.of(2024,1,2,13,0), repo));
+        List<Commit> commits = List.of(new Commit(1L, "msg1", "author1", LocalDateTime.of(2024, 1, 1, 12, 0), repo),
+                new Commit(2L, "msg2", "author2", LocalDateTime.of(2024, 1, 2, 13, 0), repo));
         var captor = ArgumentCaptor.forClass(String.class);
         var repoName = "repo1";
-        Mockito.when(commitRepository.findByRepository_Name(captor.capture())).thenReturn(commits);
+        Mockito.when(commitRepository.findByRepositoryName(captor.capture())).thenReturn(commits);
         var repositoryCommits = commits.stream()
                 .map(commit -> {
                     return new RepositoryCommits(
@@ -70,7 +70,7 @@ class CommitServiceTest {
 
     @Test
     void whenFindCommitsByRepositoryNameWithNoCommitsThenReturnEmptyList() {
-        Mockito.when(commitRepository.findByRepository_Name(Mockito.any(String.class))).thenReturn(List.of());
+        Mockito.when(commitRepository.findByRepositoryName(Mockito.any(String.class))).thenReturn(List.of());
 
         List<RepositoryCommits> result = commitService.findCommitsByRepositoryName("repo1");
 
@@ -80,10 +80,10 @@ class CommitServiceTest {
     @Test
     void whenFindLastCommitByRepositoryNameThenReturnOptionalCommit() {
         var repoName = "repo1";
-        Commit commit = new Commit(1L, "msg", "author", LocalDateTime.of(2024,1,3,14,0),
-                new Repository( null, repoName, "url"));
+        Commit commit = new Commit(1L, "msg", "author", LocalDateTime.of(2024, 1, 3, 14, 0),
+                new Repository(null, repoName, "url"));
         var captor = ArgumentCaptor.forClass(String.class);
-        Mockito.when(commitRepository.findFirstByRepository_NameOrderByDateDesc(captor.capture()))
+        Mockito.when(commitRepository.findFirstByRepositoryNameOrderByDateDesc(captor.capture()))
                 .thenReturn(Optional.of(commit));
 
         Optional<Commit> result = commitService.findLastCommitByRepositoryName(repoName);
@@ -96,7 +96,7 @@ class CommitServiceTest {
 
     @Test
     void whenFindLastCommitByRepositoryNameWithNoCommitThenReturnEmptyOptional() {
-        Mockito.when(commitRepository.findFirstByRepository_NameOrderByDateDesc(Mockito.any()))
+        Mockito.when(commitRepository.findFirstByRepositoryNameOrderByDateDesc(Mockito.any()))
                 .thenReturn(Optional.empty());
 
         Optional<Commit> result = commitService.findLastCommitByRepositoryName("repo");

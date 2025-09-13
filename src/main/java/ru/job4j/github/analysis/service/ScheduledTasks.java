@@ -39,7 +39,7 @@ public class ScheduledTasks {
 
     @Scheduled(fixedRateString = "${scheduler.fixedRate}")
     public void fetchCommits() {
-        repositoryService.findAll().forEach( repo -> {
+        repositoryService.findAll().forEach(repo -> {
             Optional<Commit> lastCommit = commitService.findLastCommitByRepositoryName(repo.getName());
             if (lastCommit.isEmpty()) {
                 gitHubService.fetchCommits(repo.getName())
